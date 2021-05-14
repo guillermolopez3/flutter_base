@@ -17,7 +17,7 @@ class BoilePlateApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: themeData,
           routes: Routes.routes,
-          home: ,
+          initialRoute: Routes.splash,
         )
     );
   }

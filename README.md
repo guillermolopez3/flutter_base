@@ -1,16 +1,13 @@
-# boileplate
+# Boileplate Template
 
-Boileplate for new projects
+Boileplate template es una plantilla con una estructura básica para conenzar un nuevo proyecto
 
-## Getting Started
+La estructura del proyecto esta generada teniendo en cuenta la Arquitectura Bloc implementando
+Clean Architectura en donde los Casos de Usos se ven reflejados dentro del directorio modules.
 
-This project is a starting point for a Flutter application.
+### Changelog
+#### Version: 0.0.1
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
