@@ -1,39 +1,42 @@
 import 'package:boileplate/bloc/auth/auth_bloc.dart';
 import 'package:boileplate/bloc/auth/auth_state.dart';
+import 'package:boileplate/utils/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class Splash extends StatefulWidget {
-  const Splash({Key? key}) : super(key: key);
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({Key? key}) : super(key: key);
 
   @override
-  _SplashState createState() => _SplashState();
+  _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashState extends State<Splash> {
+class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<AuthBloc,AuthState>(
-        builder: (context,state){
-          if(state is AuthInProgress){
-            return _splash();
-          }
+      body: BlocConsumer<AuthBloc,AuthState>(
+        listener: (context, state){
           if(state is Unauthenticated || state is AuthFailure){
-            Navigator.of(context).pushReplacementNamed('/inicio');
+            Navigator.of(context).pushReplacementNamed(Routes.login);
           }
           if(state is AuthSuccess){
-            Navigator.of(context).pushReplacementNamed('/home');
+            Navigator.of(context).pushReplacementNamed(Routes.home);
           }
-          return _splash();
         },
-      ),
+        builder: (context,state){
+            if(state is AuthInProgress){
+              return _splash();
+            }
+            return _splash();
+          },
+      )
     );
   }
 
   _splash(){
     return Center(
-
+      child: Text('Splash!!!'),
     );
   }
 }

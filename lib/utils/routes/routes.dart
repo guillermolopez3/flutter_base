@@ -1,3 +1,7 @@
+import 'package:boileplate/screens/error_screen.dart';
+import 'package:boileplate/screens/home_screen.dart';
+import 'package:boileplate/screens/login_screen.dart';
+import 'package:boileplate/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 class Routes{
@@ -7,7 +11,17 @@ class Routes{
   static const String login   = '/login';
   static const String home    = '/home';
 
-  static final routes = <String,WidgetBuilder>{
-    //splash : (BuildContext context) => ,
-  };
+  static Route<dynamic> generarRutas(RouteSettings settings){
+    final arguments = settings.arguments;
+    switch(settings.name){
+      case splash:
+        return MaterialPageRoute(builder: (_) => SplashScreen());
+      case home:
+        return MaterialPageRoute(builder: (_)=> HomeScreen());
+      case login:
+        return MaterialPageRoute(builder: (_)=> LoginScreen());
+      default:
+        return MaterialPageRoute(builder: (_)=> ErrorScreen());
+    }
+  }
 }

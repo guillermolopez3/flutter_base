@@ -1,23 +1,33 @@
+import 'package:boileplate/bloc/auth/auth_bloc.dart';
+import 'package:boileplate/repository/AuthRepository.dart';
+
 import './utils/routes/routes.dart';
 import './constants/contstants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'bloc/auth/auth_event.dart';
+
 class BoilePlateApp extends StatelessWidget {
-  const BoilePlateApp({Key? key}) : super(key: key);
+  AuthRepository _repository = AuthRepository();
+
+  BoilePlateApp({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
-    return MultiRepositoryProvider(
+    return MultiBlocProvider(
         providers: [
-
+          BlocProvider<AuthBloc>(
+              create: (context) => AuthBloc(repository: _repository)..add(CheckUserSignedIn())
+          )
         ],
         child: MaterialApp(
           title: Strings.appName,
           debugShowCheckedModeBanner: false,
           theme: themeData,
-          routes: Routes.routes,
-          home: ,
+          onGenerateRoute: Routes.generarRutas,
+          initialRoute: Routes.splash,
         )
     );
   }
