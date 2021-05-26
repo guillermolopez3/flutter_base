@@ -1,4 +1,8 @@
 //clase que se comunica con el backend
+import 'package:boileplate/provider/LocalDataProvider.dart';
+
+import '../model/User.dart';
+
 class AuthProvider{
 
   //reemplazar por las credenciales correspondientes
@@ -9,9 +13,10 @@ class AuthProvider{
   Future<bool> isAuthenticated() async{
     return false;
   }
-  //reemplazar por las credenciales correspondientes
-  Future<void> getCurrentUser() async{
-
+  //verifica si el usuario esta en local, por lo tanto esta autenticado
+  User? getCurrentUser(){
+    final map = LocalDataProvider.instance.getString(userKey);
+    return (map != null) ? User.fromJson(map) : null;
   }
 
   Future<void> signOut()async{}

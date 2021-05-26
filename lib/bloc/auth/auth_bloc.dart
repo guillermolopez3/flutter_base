@@ -1,7 +1,10 @@
-import 'package:boileplate/bloc/auth/auth_event.dart';
-import 'package:boileplate/bloc/auth/auth_state.dart';
-import 'package:boileplate/repository/AuthRepository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:equatable/equatable.dart';
+import '../../repository/AuthRepository.dart';
+import '../../model/User.dart';
+
+part 'auth_event.dart';
+part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent,AuthState>{
   final AuthRepository _repository;
@@ -24,9 +27,10 @@ class AuthBloc extends Bloc<AuthEvent,AuthState>{
   Stream<AuthState> _mapCheckUserSignedInToState() async*{
     await Future.delayed(Duration(seconds: 2));
     try{
-      final signIn = await _repository.isAuthenticated();
-      if(signIn){
-        yield AuthSuccess();
+      final user = _repository.getCurrentUser();
+      //final User? user = User(id: 1, email: 'guillermo.lopez@coderio.co');
+      if(user != null){
+        yield AuthSuccess(user);
       }else{
         yield Unauthenticated();
       }
