@@ -22,7 +22,7 @@ class AuthBloc extends Bloc<AuthEvent,AuthState>{
   }
 
   Stream<AuthState> _mapCheckUserSignedInToState() async*{
-    await Future.delayed(Duration(seconds: 10));
+    await Future.delayed(Duration(seconds: 2));
     try{
       final signIn = await _repository.isAuthenticated();
       if(signIn){

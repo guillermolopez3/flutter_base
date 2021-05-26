@@ -1,5 +1,6 @@
 import 'package:boileplate/bloc/auth/auth_bloc.dart';
 import 'package:boileplate/bloc/auth/auth_state.dart';
+import 'package:boileplate/constants/assets.dart';
 import 'package:boileplate/utils/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,7 +37,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
   _splash(){
     return Center(
-      child: Text('Splash!!!'),
+      child: Padding(
+        padding: EdgeInsets.all(10),
+        child: Image.asset(Assets.appLogo),
+      )
     );
   }
 }
